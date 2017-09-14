@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
@@ -21,6 +22,25 @@ android {
     }
 }
 
+task javadoc(type: Javadoc) {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+//添加
+publish {
+    userOrg = 'lostdeer'//bintray.com用户名
+    groupId = 'com.mengcb'//jcenter上的路径
+    artifactId = 'basenetlib'//项目名称
+    publishVersion = '1.0.0'//版本号
+    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
+    website = 'https://github.com/LostDeer/basenetlib'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -36,4 +56,5 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
 
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
+
 }

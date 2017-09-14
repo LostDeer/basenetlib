@@ -12,8 +12,6 @@ import com.meng.baselib.entitys.HttpResult;
  */
 public class ApiException extends RuntimeException {
 
-
-
     public ApiException(HttpResult httpResult) {
         this(getApiExceptionMessage(httpResult));
     }
