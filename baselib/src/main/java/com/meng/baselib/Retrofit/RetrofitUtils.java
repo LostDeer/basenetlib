@@ -41,7 +41,7 @@ public abstract class RetrofitUtils {
 
         return sRetrofit;
     }
-    
+
     public  CompositeSubscription mCompositeSubscription=new CompositeSubscription();
 
     /**

@@ -6,7 +6,6 @@ import com.meng.baselib.RxJava.FlatMapResylt;
 import com.meng.baselib.entitys.HttpResult;
 import com.meng.baselib.entitys.TestEntity;
 
-import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -21,15 +20,12 @@ public class HttpData extends RetrofitUtils {
     protected static final BookService service = getRetrofit("https://interface.meiriyiwen.com/article/").create(BookService.class);
 //    private static final MediaType FORM_CONTENT_TYPE = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
 
-    public void getBookTypes(Observer<HttpResult<TestEntity>> subscriber) {
+    public void getBookTypes(Observer<HttpResult<TestEntity>> observer) {
 //        Observable observable = service.getTypeList();
-        doNet(service.getTypeList(),subscriber,"123456789");
-    }
-
-    private void doNet(Observable<HttpResult<TestEntity>> observable, Observer<HttpResult<TestEntity>> observer, String tag) {
-        Subscription subscribe = observable
+//        doNet(,,);
+        Subscription subscribe = service.getTypeList()
                 .map(new HttpResultFunc<TestEntity>())//接收后操作
-                .flatMap(new FlatMapResylt<TestEntity>(tag))
+                .flatMap(new FlatMapResylt<TestEntity>("123456789"))
                 .subscribeOn(Schedulers.io())//订阅在子线程
                 .observeOn(AndroidSchedulers.mainThread())//;观察者在主线程
                 .subscribe(observer);
